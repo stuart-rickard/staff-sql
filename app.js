@@ -1,50 +1,40 @@
 const { askUserFor, askUserToSelect, askUserToDecide } = require( './lib/obtain-user-input' );
-const db = require('./db/connection');
-const cTable = require('console.table');
+const { connectDB, viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole } = require( './lib/db-utils' );
 
 const openingOptions = [ 'view all departments', 'view all roles', 'view all employees', 'add a department', 'add a role', 'add an employee', 'update an employee role', 'quit' ]
 
 const introMessage = () => {
     const intro = `
-    Welcome to the Employee Tracker!
-    ----Use ^C at any time to quit.
-    ----Let's get started!`;
+Welcome to the Employee Tracker!
+----Use ^C at any time to quit.
+`;
     console.log(intro);        
 }
 
-const printEmployees = () => {
-    const sql = `SELECT * FROM employees`;
-    db.query(sql, (err, rows) => {
-      if (err) {
-        console.log( err );
-        return;
-      }
-      console.table(rows);
-    });
-};
-
-
 const runEmployeeTracker = async function() {
-    await db.connect(err => {
-        if (err) throw err;
-        console.log('Employee database connected.');
-      });
+    await connectDB();
     introMessage();
     switch ( await askUserToSelect( 'one of the following', openingOptions ) ) {
-            case 'view all departments':
+        case 'view all departments':
+            viewDepartments()
             break;
         case 'view all roles':
+            viewRoles();
             break;
         case 'view all employees':
-            printEmployees();
+            viewEmployees();
             break;
         case 'add a department':
+            addDepartment();
             break;
         case 'add a role':
+            addRole();
             break;
         case 'add an employee':
+            addEmployee();
             break;
         case 'update an employee role':
+            updateEmployeeRole();
             break;
         case 'quit':
             break;
