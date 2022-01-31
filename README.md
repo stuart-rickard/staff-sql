@@ -26,7 +26,7 @@ Lastly, this project uses the `inquirer`, `express`, `mysql2`, and `console.tabl
 
 ## Usage
 
-A video demonstrating use of the app can be found [here](https://drive.google.com/file/d/1mnOHn1nez2rT1dv2EAr-cvxWpB77mIWi/view?usp=sharing).
+A video demonstrating use of the app can be found [here](https://drive.google.com/file/d/1HgZiis7hH-S0LFJqw222b6O25tvd9deN/view?usp=sharing).
 
 In order to get up and running:
 1. Create a database (named `staff_12` in this code) using the MySQL command line.
