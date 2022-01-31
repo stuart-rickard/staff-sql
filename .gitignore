@@ -1,6 +1,7 @@
 # SR development environment
 .lh/
 git_ignored.js
+for_tests.js
 
 # Standard
 .DS_Store
