@@ -1,1 +1,0 @@
-SELECT T1.employee_id, T1.first_name, T1.last_name FROM employees T1 JOIN (SELECT DISTINCT T2.manager_id FROM employees T2) T3 ON T1.employee_id = T3.manager_id;
