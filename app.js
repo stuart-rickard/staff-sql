@@ -71,12 +71,15 @@ const runEmployeeTracker = async function () {
       default:
         throw err;
     }
-    // Quit option is provided here to make the rendering of reports cleaner and so that user doesn't have to go through the whole list to quit
-    let choice2 = await askUserToDecide(
-      "Do you have more Employee Tracker actions?"
-    );
-    if (!choice2) {
-      quit = true;
+    if (quit) {
+      // Continue option is provided here to make the rendering of reports cleaner and so that user doesn't have to go through the whole list to quit
+    } else {
+      let choice2 = await askUserToDecide(
+        "Do you have more Employee Tracker actions?"
+      );
+      if (!choice2) {
+        quit = true;
+      }
     }
   }
   // Disconnect on quit
