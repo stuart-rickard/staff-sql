@@ -1,5 +1,5 @@
 const {
-  askUserFor,
+  //   askUserFor,XXXXXXXXXXXXXXXXXXXXXXX
   askUserToSelect,
   askUserToDecide,
 } = require("./lib/obtain-user-input");
@@ -35,17 +35,17 @@ Welcome to the Employee Tracker!
 };
 
 const runEmployeeTracker = async function () {
+  // Connect to database
   await connectDB();
+  // Greet user
   introMessage();
+  // Begin actions loop
   let quit = false;
   while (!quit) {
-    console.log("top of while loop");
-
-    let choice = await askUserToSelect("one of the following", openingOptions);
-    switch (choice) {
+    let choice1 = await askUserToSelect("one of the following", openingOptions);
+    switch (choice1) {
       case "view all departments":
         await viewDepartments();
-        console.log("after view depts call");
         break;
       case "view all roles":
         await viewRoles();
@@ -67,12 +67,11 @@ const runEmployeeTracker = async function () {
         break;
       case "quit":
         quit = true;
-        console.log(quit);
         break;
       default:
         throw err;
-        console.log("not supposed to end up here");
     }
+    // Quit option is provided here to make the rendering of reports cleaner and so that user doesn't have to go through the whole list to quit
     let choice2 = await askUserToDecide(
       "Do you have more Employee Tracker actions?"
     );
@@ -80,9 +79,8 @@ const runEmployeeTracker = async function () {
       quit = true;
     }
   }
-  console.log("outside while loop");
+  // Disconnect on quit
   disconnectDB();
-  console.log("all done");
 };
 
 runEmployeeTracker();
